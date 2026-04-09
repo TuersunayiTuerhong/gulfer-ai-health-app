@@ -1,0 +1,57 @@
+<view class="container">
+
+<!-- LANGUAGE -->
+<view>
+  <button bindtap="setEnglish">English</button>
+  <button bindtap="setChinese">中文</button>
+</view>
+
+<!-- BOT -->
+<view class="bot">
+  <block wx:if="{{step === 0}}">
+    {{lang === "cn" ? "👋 我是 Gulfer AI，你有眼睛干涩吗？" : "👋 I am Gulfer AI. Do you have dry eyes?"}}
+  </block>
+
+  <block wx:elif="{{step === 1}}">
+    {{lang === "cn" ? "👀 你有夜盲症吗？" : "👀 Night blindness?"}}
+  </block>
+
+  <block wx:elif="{{step === 2}}">
+    {{lang === "cn" ? "😴 你经常感到疲劳吗？" : "😴 Do you feel fatigue?"}}
+  </block>
+
+  <block wx:elif="{{step === 3}}">
+    {{lang === "cn" ? "😐 你脸色苍白吗？" : "😐 Pale skin?"}}
+  </block>
+
+  <block wx:else>
+    {{lang === "cn" ? "🧠 点击分析" : "🧠 Click analyze"}}
+  </block>
+</view>
+
+<!-- BUTTONS -->
+<view wx:if="{{step < 4}}">
+  <button bindtap="nextYes">{{lang==="cn"?"是":"Yes"}}</button>
+  <button bindtap="nextNo">{{lang==="cn"?"否":"No"}}</button>
+</view>
+
+<!-- ANALYZE -->
+<button wx:if="{{step >= 4}}" bindtap="analyze">
+  {{lang==="cn"?"分析":"Analyze"}}
+</button>
+
+<!-- ⌨️ TYPING -->
+<view wx:if="{{typing}}">
+  🤖 {{lang==="cn"?"分析中...":"Analyzing..."}}
+</view>
+
+<!-- RESULT -->
+<view>{{result}}</view>
+<view>{{advice}}</view>
+<view style="color:red;">{{warning}}</view>
+
+<button bindtap="resetAll">
+  {{lang==="cn"?"重新开始":"Restart"}}
+</button>
+
+</view>
